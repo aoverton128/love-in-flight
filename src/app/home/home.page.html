@@ -1,0 +1,82 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Love in Flight</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="home-container">
+
+    <section class="welcome-section">
+      <h1>How are we feeling today?</h1>
+      <p>
+        Check in with each other and stay connected, even from far away.
+      </p>
+    </section>
+
+    <section class="mood-section">
+
+      <div class="person-card">
+        <div class="falcon-placeholder">
+          Falcon
+        </div>
+
+        <h2>You</h2>
+
+        <div class="mood-pill">
+          <span class="mood-dot"></span>
+          <span>Not selected</span>
+        </div>
+
+        <p class="mood-action">Tap to update mood</p>
+      </div>
+
+      <div class="person-card">
+        <div class="falcon-placeholder">
+          Falcon
+        </div>
+
+        <h2>Partner</h2>
+
+        <div class="mood-pill partner-mood">
+          <span class="mood-dot partner-dot"></span>
+          <span>Happy</span>
+        </div>
+      </div>
+
+    </section>
+
+    <section class="home-card">
+      <div class="card-label">Next Plan</div>
+      <h3>Movie Night</h3>
+      <p>Saturday · 8:00 PM</p>
+    </section>
+
+    <section class="home-card">
+      <div class="card-label">Prompt of the Day</div>
+      <h3>Let's Connect</h3>
+      <p>
+        What is one small thing that made you think of me this week?
+      </p>
+    </section>
+
+  </div>
+
+  <div class="bottom-nav">
+    <a routerLink="/home" class="nav-item active">
+      <ion-icon name="home-outline"></ion-icon>
+      <span>Home</span>
+    </a>
+
+    <a routerLink="/connect" class="nav-item">
+      <ion-icon name="chatbubbles-outline"></ion-icon>
+      <span>Connect</span>
+    </a>
+
+    <a routerLink="/plans" class="nav-item">
+      <ion-icon name="calendar-outline"></ion-icon>
+      <span>Plans</span>
+    </a>
+  </div>
+
+</ion-content>

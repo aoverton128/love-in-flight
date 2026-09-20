@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Weekly Plans</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="plans-container">
+
+    <section class="plans-intro">
+      <h1>Plan a little time together</h1>
+      <p>
+        Keep track of the things you want to do together this week.
+      </p>
+    </section>
+
+    <section class="week-strip">
+
+      <div class="day-option"
+           *ngFor="let day of days"
+           [class.selected]="selectedDay === day"
+           (click)="selectDay(day)">
+        <span class="day-name">{{ day.shortName }}</span>
+        <span class="day-number">{{ day.date }}</span>
+      </div>
+
+    </section>
+
+    <section class="selected-day-header">
+      <h2>{{ selectedDay.name }}</h2>
+      <span>{{ selectedDay.fullDate }}</span>
+    </section>
+
+    <section class="plan-list">
+
+      <div class="plan-card"
+           *ngFor="let plan of selectedDay.plans">
+        <div class="plan-icon">
+          <ion-icon name="calendar-outline"></ion-icon>
+        </div>
+
+        <div class="plan-info">
+          <h2>{{ plan.title }}</h2>
+          <p>{{ plan.time }}</p>
+        </div>
+
+        <ion-icon class="plan-arrow"
+                  name="chevron-forward-outline">
+        </ion-icon>
+      </div>
+
+      <div class="empty-plans"
+           *ngIf="selectedDay.plans.length === 0">
+        No plans yet for this day.
+      </div>
+
+    </section>
+
+    <ion-button class="add-plan-button" expand="block">
+      <ion-icon slot="start" name="add-outline"></ion-icon>
+      Add Plan
+    </ion-button>
+
+  </div>
+
+  <div class="bottom-nav">
+    <a routerLink="/home" class="nav-item">
+      <ion-icon name="home-outline"></ion-icon>
+      <span>Home</span>
+    </a>
+
+    <a routerLink="/connect" class="nav-item">
+      <ion-icon name="chatbubbles-outline"></ion-icon>
+      <span>Connect</span>
+    </a>
+
+    <a routerLink="/plans" class="nav-item active">
+      <ion-icon name="calendar-outline"></ion-icon>
+      <span>Plans</span>
+    </a>
+  </div>
+
+</ion-content>

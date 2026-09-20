@@ -1,0 +1,174 @@
+ion-content {
+  --background: #f8f5ff;
+  --color: #332f3d;
+}
+
+ion-toolbar {
+  --background: #f4effc;
+  --color: #332f3d;
+  --border-color: transparent;
+}
+
+ion-title {
+  color: #332f3d;
+  font-weight: 700;
+}
+
+.home-container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 28px 18px 110px;
+  color: #332f3d;
+}
+
+.welcome-section {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.welcome-section h1 {
+  margin: 0 0 8px;
+  color: #332f3d;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.welcome-section p {
+  max-width: 420px;
+  margin: 0 auto;
+  color: #6f6878;
+  line-height: 1.5;
+}
+
+.mood-section {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.person-card {
+  flex: 1;
+  min-width: 0;
+  padding: 16px 12px;
+  text-align: center;
+  background: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 8px 22px rgba(63, 54, 88, 0.08);
+}
+
+.person-card h2 {
+  margin: 12px 0 8px;
+  color: #332f3d;
+  font-size: 1.2rem;
+}
+
+.falcon-placeholder {
+  width: 140px;
+  height: 140px;
+  max-width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient( 145deg, #ebe5f8, #f7f2ff );
+  color: #9289a4;
+  font-size: 0.9rem;
+}
+
+.mood-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 11px;
+  background: #f1edf7;
+  color: #70697b;
+  border-radius: 999px;
+  font-size: 0.88rem;
+}
+
+.mood-dot {
+  width: 8px;
+  height: 8px;
+  background: #aaa1b6;
+  border-radius: 50%;
+}
+
+.partner-mood {
+  background: #f8eef4;
+}
+
+.partner-dot {
+  background: #d58eae;
+}
+
+.mood-action {
+  margin: 10px 0 0;
+  color: #7e6da8;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.home-card {
+  margin-bottom: 14px;
+  padding: 18px;
+  background: #ffffff;
+  color: #332f3d;
+  border-radius: 22px;
+  box-shadow: 0 8px 22px rgba(63, 54, 88, 0.07);
+}
+
+.home-card h3 {
+  margin: 4px 0 0;
+  color: #332f3d;
+  font-size: 1.15rem;
+}
+
+.home-card p {
+  margin: 9px 0 0;
+  color: #6f6878;
+  line-height: 1.45;
+}
+
+.card-label {
+  color: #91899d;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.bottom-nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 12px 14px;
+  background: rgba(255, 255, 255, 0.97);
+  border-top: 1px solid #ece7f3;
+  box-shadow: 0 -4px 18px rgba(63, 54, 88, 0.06);
+}
+
+.nav-item {
+  flex: 1;
+  text-decoration: none;
+  color: #91899d;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+
+  ion-icon {
+    font-size: 1.35rem;
+  }
+}
+
+.nav-item.active {
+  color: #7e6da8;
+}
