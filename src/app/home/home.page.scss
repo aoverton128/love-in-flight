@@ -14,6 +14,72 @@ ion-title {
   font-weight: 700;
 }
 
+.profile-button {
+  --padding-start: 0;
+  --padding-end: 0;
+  --background: #ffffff;
+  --color: #7e6da8;
+  --border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  min-height: 38px;
+  margin-right: 10px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.profile-button ion-icon {
+  font-size: 1.25rem;
+}
+
+.account-container {
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 36px 22px;
+  text-align: center;
+}
+
+.profile-picture {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #eee9fa;
+  color: #7e6da8;
+}
+
+.profile-picture ion-icon {
+  font-size: 2.6rem;
+}
+
+.account-container h2 {
+  margin: 0 0 26px;
+  color: #332f3d;
+  font-size: 1.35rem;
+}
+
+.account-container ion-list {
+  background: transparent;
+}
+
+.account-container ion-item {
+  --background: #ffffff;
+  --color: #332f3d;
+  --border-radius: 18px;
+  --padding-start: 16px;
+  --inner-padding-end: 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 6px 18px rgba(63, 54, 88, 0.06);
+}
+
+.account-container ion-item ion-icon {
+  color: #7e6da8;
+}
+
 .home-container {
   max-width: 700px;
   margin: 0 auto;

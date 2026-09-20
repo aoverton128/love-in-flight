@@ -1,6 +1,11 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Let's Connect</ion-title>
+    <ion-buttons slot="end">
+      <ion-button class="profile-button" (click)="openProfileMenu($event)">
+        <ion-icon name="person-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -15,7 +20,6 @@
     </section>
 
     <section class="category-list">
-
       <div class="category-card">
         <ion-icon name="heart-outline"></ion-icon>
         <div>

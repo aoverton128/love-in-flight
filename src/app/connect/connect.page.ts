@@ -13,4 +13,8 @@ export class ConnectPage implements OnInit {
   ngOnInit() {
   }
 
+  openProfileMenu(event: Event) {
+  console.log('Profile menu clicked');
+}
+
 }

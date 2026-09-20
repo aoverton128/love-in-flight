@@ -1,6 +1,11 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Weekly Plans</ion-title>
+    <ion-buttons slot="end">
+      <ion-button class="profile-button" (click)="openProfileMenu($event)">
+        <ion-icon name="person-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -45,8 +50,7 @@
         </div>
 
         <ion-icon class="plan-arrow"
-                  name="chevron-forward-outline">
-        </ion-icon>
+                  name="chevron-forward-outline"></ion-icon>
       </div>
 
       <div class="empty-plans"

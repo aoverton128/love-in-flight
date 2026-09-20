@@ -75,4 +75,8 @@ selectDay(day: any) {
   this.selectedDay = day;
 }
 
+openProfileMenu(event: Event) {
+  console.log('Profile menu clicked');
+}
+
 }

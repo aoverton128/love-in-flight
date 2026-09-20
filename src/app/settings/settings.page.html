@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Settings</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="settings-container">
+
+    <section class="settings-section">
+      <h2>Notifications</h2>
+
+      <div class="setting-card">
+        <div class="setting-text">
+          <h3>Plan Reminders</h3>
+          <p>Get a notification before an upcoming plan.</p>
+        </div>
+
+        <ion-toggle
+          [(ngModel)]="planRemindersEnabled"
+          (ionChange)="togglePlanReminders()">
+        </ion-toggle>
+      </div>
+
+      <div class="reminder-options"
+           *ngIf="planRemindersEnabled">
+        <h3>Reminder Time</h3>
+        <p>{{ reminderLabel }}</p>
+
+        <ion-range min="0"
+                   max="3"
+                   step="1"
+                   snaps="true"
+                   ticks="true"
+                   [(ngModel)]="reminderIndex"
+                   (ionChange)="updateReminderLabel()">
+        </ion-range>
+
+        <div class="range-labels">
+          <span>15 min</span>
+          <span>30 min</span>
+          <span>1 hr</span>
+          <span>2 hr</span>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+</ion-content>

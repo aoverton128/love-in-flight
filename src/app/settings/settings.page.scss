@@ -1,0 +1,93 @@
+ion-content {
+  --background: #f8f5ff;
+  --color: #332f3d;
+}
+
+ion-toolbar {
+  --background: #f4effc;
+  --color: #332f3d;
+  --border-color: transparent;
+}
+
+ion-title {
+  font-weight: 700;
+}
+
+.settings-container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 28px 18px;
+}
+
+.settings-section h2 {
+  margin: 0 0 14px;
+  color: #332f3d;
+  font-size: 1.2rem;
+}
+
+.setting-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px;
+  background: #ffffff;
+  border-radius: 22px;
+  box-shadow: 0 8px 22px rgba(63, 54, 88, 0.07);
+}
+
+.setting-text {
+  flex: 1;
+  min-width: 0;
+}
+
+  .setting-text h3 {
+    margin: 0 0 4px;
+    color: #332f3d;
+    font-size: 1.05rem;
+  }
+
+  .setting-text p {
+    margin: 0;
+    color: #6f6878;
+    font-size: 0.9rem;
+    font-style: italic;
+    line-height: 1.4;
+  }
+
+.reminder-options {
+  margin-top: 14px;
+  padding: 18px;
+  background: #ffffff;
+  border-radius: 22px;
+  box-shadow: 0 8px 22px rgba(63, 54, 88, 0.07);
+}
+
+  .reminder-options h3 {
+    margin: 0 0 4px;
+    color: #332f3d;
+    font-size: 1rem;
+  }
+
+  .reminder-options p {
+    margin: 0 0 12px;
+    color: #7e6da8;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+ion-range {
+  --bar-background: #ddd7e8;
+  --bar-background-active: #7e6da8;
+  --knob-background: #7e6da8;
+  --pin-background: #7e6da8;
+  --pin-color: #ffffff;
+}
+
+.range-labels {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  color: #91899d;
+  font-size: 0.75rem;
+}

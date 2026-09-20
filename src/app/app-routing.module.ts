@@ -19,6 +19,10 @@ const routes: Routes = [
     path: 'plans',
     loadChildren: () => import('./plans/plans.module').then( m => m.PlansPageModule)
   },
+  {
+    path: 'settings',
+    loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule)
+  },
 ];
 
 @NgModule({
