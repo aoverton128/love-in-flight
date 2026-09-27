@@ -7,61 +7,48 @@ import { Component, OnInit } from '@angular/core';
   standalone: false,
 })
 export class SettingsPage implements OnInit {
-
   planRemindersEnabled = false;
-
   reminderIndex = 1;
-
   reminderLabel = '30 minutes before';
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
+    const savedEnabled = localStorage.getItem('planRemindersEnabled');
+    const savedReminderIndex = localStorage.getItem('reminderIndex');
+
+    if (savedEnabled !== null) {
+      this.planRemindersEnabled = savedEnabled === 'true';
+    }
+
+    if (savedReminderIndex !== null) {
+      this.reminderIndex = Number(savedReminderIndex);
+    }
+
+    this.updateReminderLabel();
   }
 
-  updateReminderLabel() {
+  updateReminderLabel(event?: any) {
+    if (event?.detail?.value !== undefined) {
+      this.reminderIndex = Number(event.detail.value);
+    }
+
     const labels = [
       '15 minutes before',
       '30 minutes before',
       '1 hour before',
-      '2 hours before'
+      '2 hours before',
     ];
 
     this.reminderLabel = labels[this.reminderIndex];
+
+    localStorage.setItem('reminderIndex', this.reminderIndex.toString());
   }
 
   togglePlanReminders() {
-  const localNotification =
-    (window as any).cordova?.plugins?.notification?.local;
-
-  if (!localNotification) {
-    console.log('Local notification plugin is not available.');
-    return;
+    localStorage.setItem(
+      'planRemindersEnabled',
+      this.planRemindersEnabled.toString(),
+    );
   }
-
-  if (!this.planRemindersEnabled) {
-    localNotification.cancel(2);
-    return;
-  }
-
-  const reminderTimes = [
-    { amount: 15, unit: 'minute' },
-    { amount: 30, unit: 'minute' },
-    { amount: 1, unit: 'hour' },
-    { amount: 2, unit: 'hour' }
-  ];
-
-  const selectedTime = reminderTimes[this.reminderIndex];
-
-  localNotification.schedule({
-    id: 2,
-    title: 'Love in Flight',
-    text: 'You have an upcoming plan ❤️',
-    trigger: {
-      in: selectedTime.amount,
-      unit: selectedTime.unit
-    }
-  });
-}
-
 }

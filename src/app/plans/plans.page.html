@@ -2,33 +2,89 @@
   <ion-toolbar>
     <ion-title>Weekly Plans</ion-title>
     <ion-buttons slot="end">
-      <ion-button class="profile-button" (click)="openProfileMenu($event)">
+      <ion-button id="plans-profile-modal-trigger" class="profile-button">
         <ion-icon name="person-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
+<ion-modal #profileModal trigger="plans-profile-modal-trigger">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Account</ion-title>
+
+        <ion-buttons slot="end">
+          <ion-button (click)="profileModal.dismiss()"> Close </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+      <div class="account-container">
+        <div class="profile-picture">
+          <ion-icon name="person-outline"></ion-icon>
+        </div>
+
+        <h2>Alyssa</h2>
+
+        <ion-list lines="none">
+          <ion-item button>
+            <ion-icon slot="start" name="person-outline"></ion-icon>
+            <ion-label>Profile</ion-label>
+          </ion-item>
+
+          <ion-item
+            button
+            routerLink="/settings"
+            (click)="profileModal.dismiss()"
+          >
+            <ion-icon slot="start" name="settings-outline"></ion-icon>
+            <ion-label>Settings</ion-label>
+          </ion-item>
+
+          <ion-item button>
+            <ion-icon slot="start" name="information-circle-outline"></ion-icon>
+            <ion-label>About Love in Flight</ion-label>
+          </ion-item>
+        </ion-list>
+      </div>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
 <ion-content>
   <div class="plans-container">
-
     <section class="plans-intro">
       <h1>Plan a little time together</h1>
-      <p>
-        Keep track of the things you want to do together this week.
-      </p>
+      <p>Keep track of the things you want to do together this week.</p>
     </section>
 
-    <section class="week-strip">
+    <div class="week-navigation">
+      <ion-button fill="clear" (click)="previousWeek()">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </ion-button>
 
-      <div class="day-option"
-           *ngFor="let day of days"
-           [class.selected]="selectedDay === day"
-           (click)="selectDay(day)">
+      <span class="week-label">
+        {{ days[0]?.fullDate }} - {{ days[6]?.fullDate }}
+      </span>
+
+      <ion-button fill="clear" (click)="nextWeek()">
+        <ion-icon name="chevron-forward-outline"></ion-icon>
+      </ion-button>
+    </div>
+
+    <section class="week-strip">
+      <div
+        class="day-option"
+        *ngFor="let day of days"
+        [class.selected]="selectedDay === day"
+        (click)="selectDay(day)"
+      >
         <span class="day-name">{{ day.shortName }}</span>
         <span class="day-number">{{ day.date }}</span>
       </div>
-
     </section>
 
     <section class="selected-day-header">
@@ -37,9 +93,11 @@
     </section>
 
     <section class="plan-list">
-
-      <div class="plan-card"
-           *ngFor="let plan of selectedDay.plans">
+      <div
+        class="plan-card"
+        *ngFor="let plan of selectedDay.plans"
+        (click)="openEditPlan(plan, editPlanModal)"
+      >
         <div class="plan-icon">
           <ion-icon name="calendar-outline"></ion-icon>
         </div>
@@ -49,23 +107,143 @@
           <p>{{ plan.time }}</p>
         </div>
 
-        <ion-icon class="plan-arrow"
-                  name="chevron-forward-outline"></ion-icon>
+        <ion-icon class="plan-arrow" name="chevron-forward-outline"></ion-icon>
       </div>
 
-      <div class="empty-plans"
-           *ngIf="selectedDay.plans.length === 0">
+      <div class="empty-plans" *ngIf="selectedDay.plans.length === 0">
         No plans yet for this day.
       </div>
-
     </section>
 
-    <ion-button class="add-plan-button" expand="block">
+    <ion-button
+      id="add-plan-modal-trigger"
+      class="add-plan-button"
+      expand="block"
+    >
       <ion-icon slot="start" name="add-outline"></ion-icon>
       Add Plan
     </ion-button>
 
+    <ion-modal #addPlanModal trigger="add-plan-modal-trigger">
+      <ng-template>
+        <ion-header>
+          <ion-toolbar>
+            <ion-title>Add Plan</ion-title>
+
+            <ion-buttons slot="end">
+              <ion-button (click)="addPlanModal.dismiss()"> Cancel </ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+
+        <ion-content>
+          <div class="add-plan-container">
+            <ion-item>
+              <ion-input
+                label="Plan Title"
+                labelPlacement="stacked"
+                placeholder="What are you planning?"
+                [(ngModel)]="newPlanTitle"
+              >
+              </ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input
+                type="date"
+                label="Date"
+                labelPlacement="stacked"
+                helperText="Tap to choose a date"
+                [(ngModel)]="newPlanDate"
+              >
+              </ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input
+                type="time"
+                label="Time"
+                labelPlacement="stacked"
+                helperText="Tap to choose a time"
+                [(ngModel)]="newPlanTime"
+              >
+              </ion-input>
+            </ion-item>
+
+            <ion-button
+              expand="block"
+              class="save-plan-button"
+              (click)="savePlan(addPlanModal)"
+            >
+              Save Plan
+            </ion-button>
+          </div>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
   </div>
+
+  <ion-modal #editPlanModal>
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Edit Plan</ion-title>
+
+          <ion-buttons slot="end">
+            <ion-button (click)="confirmDeletePlan(editPlanModal)">
+              <ion-icon name="trash-outline"></ion-icon>
+            </ion-button>
+
+            <ion-button (click)="editPlanModal.dismiss()"> Cancel </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content>
+        <div class="add-plan-container">
+          <ion-item>
+            <ion-input
+              label="Plan Title"
+              labelPlacement="stacked"
+              placeholder="What are you planning?"
+              [(ngModel)]="editPlanTitle"
+            >
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input
+              type="date"
+              label="Date"
+              labelPlacement="stacked"
+              helperText="Tap to choose a date"
+              [(ngModel)]="editPlanDate"
+            >
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input
+              type="time"
+              label="Time"
+              labelPlacement="stacked"
+              helperText="Tap to choose a time"
+              [(ngModel)]="editPlanTime"
+            >
+            </ion-input>
+          </ion-item>
+
+          <ion-button
+            expand="block"
+            class="save-plan-button"
+            (click)="updatePlan(editPlanModal)"
+          >
+            Save Changes
+          </ion-button>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 
   <div class="bottom-nav">
     <a routerLink="/home" class="nav-item">
@@ -83,5 +261,4 @@
       <span>Plans</span>
     </a>
   </div>
-
 </ion-content>

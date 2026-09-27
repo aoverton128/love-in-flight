@@ -2,31 +2,27 @@
   <ion-toolbar>
     <ion-title>Love in Flight</ion-title>
     <ion-buttons slot="end">
-      <ion-button id="profile-modal-trigger" class="profile-button">
+      <ion-button id="home-profile-modal-trigger" class="profile-button">
         <ion-icon name="person-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-modal #profileModal trigger="profile-modal-trigger">
+<ion-modal #profileModal trigger="home-profile-modal-trigger">
   <ng-template>
-
     <ion-header>
       <ion-toolbar>
         <ion-title>Account</ion-title>
 
         <ion-buttons slot="end">
-          <ion-button (click)="profileModal.dismiss()">
-            Close
-          </ion-button>
+          <ion-button (click)="profileModal.dismiss()"> Close </ion-button>
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
 
     <ion-content>
       <div class="account-container">
-
         <div class="profile-picture">
           <ion-icon name="person-outline"></ion-icon>
         </div>
@@ -34,13 +30,16 @@
         <h2>Alyssa</h2>
 
         <ion-list lines="none">
-
           <ion-item button>
             <ion-icon slot="start" name="person-outline"></ion-icon>
             <ion-label>Profile</ion-label>
           </ion-item>
 
-          <ion-item button routerLink="/settings" (click)="profileModal.dismiss()">
+          <ion-item
+            button
+            routerLink="/settings"
+            (click)="profileModal.dismiss()"
+          >
             <ion-icon slot="start" name="settings-outline"></ion-icon>
             <ion-label>Settings</ion-label>
           </ion-item>
@@ -49,31 +48,22 @@
             <ion-icon slot="start" name="information-circle-outline"></ion-icon>
             <ion-label>About Love in Flight</ion-label>
           </ion-item>
-
         </ion-list>
-
       </div>
     </ion-content>
-
   </ng-template>
 </ion-modal>
 
 <ion-content>
   <div class="home-container">
-
     <section class="welcome-section">
       <h1>How are we feeling today?</h1>
-      <p>
-        Check in with each other and stay connected, even from far away.
-      </p>
+      <p>Check in with each other and stay connected, even from far away.</p>
     </section>
 
     <section class="mood-section">
-
       <div class="person-card">
-        <div class="falcon-placeholder">
-          Falcon
-        </div>
+        <div class="falcon-placeholder">Falcon</div>
 
         <h2>You</h2>
 
@@ -86,9 +76,7 @@
       </div>
 
       <div class="person-card">
-        <div class="falcon-placeholder">
-          Falcon
-        </div>
+        <div class="falcon-placeholder">Falcon</div>
 
         <h2>Partner</h2>
 
@@ -97,7 +85,6 @@
           <span>Happy</span>
         </div>
       </div>
-
     </section>
 
     <section class="home-card">
@@ -109,11 +96,8 @@
     <section class="home-card">
       <div class="card-label">Prompt of the Day</div>
       <h3>Let's Connect</h3>
-      <p>
-        What is one small thing that made you think of me this week?
-      </p>
+      <p>What is one small thing that made you think of me this week?</p>
     </section>
-
   </div>
 
   <div class="bottom-nav">
@@ -132,5 +116,4 @@
       <span>Plans</span>
     </a>
   </div>
-  
 </ion-content>

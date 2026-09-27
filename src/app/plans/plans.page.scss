@@ -28,6 +28,53 @@ ion-title {
   overflow: hidden;
 }
 
+.account-container {
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 36px 22px;
+  text-align: center;
+}
+
+.profile-picture {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #eee9fa;
+  color: #7e6da8;
+}
+
+.profile-picture ion-icon {
+  font-size: 2.6rem;
+}
+
+.account-container h2 {
+  margin: 0 0 26px;
+  color: #332f3d;
+  font-size: 1.35rem;
+}
+
+.account-container ion-list {
+  background: transparent;
+}
+
+.account-container ion-item {
+  --background: #ffffff;
+  --color: #332f3d;
+  --border-radius: 18px;
+  --padding-start: 16px;
+  --inner-padding-end: 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 6px 18px rgba(63, 54, 88, 0.06);
+}
+
+.account-container ion-item ion-icon {
+  color: #7e6da8;
+}
+
 .plans-container {
   max-width: 700px;
   margin: 0 auto;
@@ -51,6 +98,35 @@ ion-title {
   margin: 0 auto;
   color: #6f6878;
   line-height: 1.5;
+}
+
+.week-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 0 14px;
+  padding: 0 4px;
+}
+
+.week-navigation ion-button {
+  --color: #7e6da8;
+  --background: transparent;
+  --box-shadow: none;
+  --padding-start: 8px;
+  --padding-end: 8px;
+  min-width: 40px;
+  height: 40px;
+}
+
+.week-navigation ion-icon {
+  font-size: 1.35rem;
+}
+
+.week-label {
+  color: #332f3d;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-align: center;
 }
 
 .week-strip {
@@ -182,6 +258,40 @@ ion-title {
   --box-shadow: none;
   text-transform: none;
   font-weight: 600;
+}
+
+.add-plan-container {
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 28px 22px;
+}
+
+.add-plan-container ion-item {
+  --background: #ffffff;
+  --color: #332f3d;
+  --border-radius: 18px;
+  --padding-start: 16px;
+  --inner-padding-end: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 6px 18px rgba(63, 54, 88, 0.06);
+}
+
+.add-plan-container ion-input {
+  --color: #332f3d;
+  --placeholder-color: #9a91aa;
+  --highlight-color-focused: #7e6da8;
+  --highlight-color-valid: #7e6da8;
+  --highlight-color-invalid: #7e6da8;
+}
+
+.save-plan-button {
+  margin-top: 24px;
+  --background: #7e6da8;
+  --color: #ffffff;
+  --border-radius: 18px;
+  height: 50px;
+  font-weight: 600;
+  text-transform: none;
 }
 
 .bottom-nav {

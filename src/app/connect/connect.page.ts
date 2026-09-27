@@ -7,14 +7,7 @@ import { Component, OnInit } from '@angular/core';
   standalone: false,
 })
 export class ConnectPage implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-  openProfileMenu(event: Event) {
-  console.log('Profile menu clicked');
-}
-
+  ngOnInit() {}
 }

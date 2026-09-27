@@ -10,7 +10,6 @@
 
 <ion-content>
   <div class="settings-container">
-
     <section class="settings-section">
       <h2>Notifications</h2>
 
@@ -22,22 +21,24 @@
 
         <ion-toggle
           [(ngModel)]="planRemindersEnabled"
-          (ionChange)="togglePlanReminders()">
+          (ionChange)="togglePlanReminders()"
+        >
         </ion-toggle>
       </div>
 
-      <div class="reminder-options"
-           *ngIf="planRemindersEnabled">
+      <div class="reminder-options" *ngIf="planRemindersEnabled">
         <h3>Reminder Time</h3>
         <p>{{ reminderLabel }}</p>
 
-        <ion-range min="0"
-                   max="3"
-                   step="1"
-                   snaps="true"
-                   ticks="true"
-                   [(ngModel)]="reminderIndex"
-                   (ionChange)="updateReminderLabel()">
+        <ion-range
+          min="0"
+          max="3"
+          step="1"
+          snaps="true"
+          ticks="true"
+          [(ngModel)]="reminderIndex"
+          (ionChange)="updateReminderLabel($event)"
+        >
         </ion-range>
 
         <div class="range-labels">
@@ -47,8 +48,6 @@
           <span>2 hr</span>
         </div>
       </div>
-
     </section>
-
   </div>
 </ion-content>
