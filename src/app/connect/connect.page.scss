@@ -168,3 +168,56 @@ ion-title {
 .nav-item.active {
   color: #7e6da8;
 }
+
+/* NEW */
+.category-card {
+  cursor: pointer;
+}
+
+/* NEW */
+.prompt-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 28px 20px;
+}
+
+.prompt-intro {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.prompt-intro h2 {
+  margin: 0 0 8px;
+  color: #332f3d;
+  font-size: 1.5rem;
+}
+
+.prompt-intro p {
+  margin: 0;
+  color: #6f6878;
+  line-height: 1.5;
+}
+
+.prompt-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px;
+  margin-bottom: 14px;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 8px 22px rgba(63, 54, 88, 0.07);
+}
+
+.prompt-card ion-icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: #7e6da8;
+  font-size: 1.4rem;
+}
+
+.prompt-card p {
+  margin: 0;
+  color: #332f3d;
+  line-height: 1.5;
+}

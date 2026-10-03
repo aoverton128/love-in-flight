@@ -64,7 +64,7 @@
     </section>
 
     <section class="category-list">
-      <div class="category-card">
+      <div class="category-card" (click)="openCategory('Us', promptModal)">
         <ion-icon name="heart-outline"></ion-icon>
         <div>
           <h2>Us</h2>
@@ -72,7 +72,10 @@
         </div>
       </div>
 
-      <div class="category-card">
+      <div
+        class="category-card"
+        (click)="openCategory('Light & Fun', promptModal)"
+      >
         <ion-icon name="sparkles-outline"></ion-icon>
         <div>
           <h2>Light & Fun</h2>
@@ -80,7 +83,10 @@
         </div>
       </div>
 
-      <div class="category-card">
+      <div
+        class="category-card"
+        (click)="openCategory('Plans & Dreams', promptModal)"
+      >
         <ion-icon name="compass-outline"></ion-icon>
         <div>
           <h2>Plans & Dreams</h2>
@@ -90,7 +96,10 @@
         </div>
       </div>
 
-      <div class="category-card">
+      <div
+        class="category-card"
+        (click)="openCategory('Check-In', promptModal)"
+      >
         <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
         <div>
           <h2>Check-In</h2>
@@ -101,6 +110,35 @@
       </div>
     </section>
   </div>
+
+  <!-- NEW: prompt modal -->
+  <ion-modal #promptModal>
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>{{ selectedCategory }}</ion-title>
+
+          <ion-buttons slot="end">
+            <ion-button (click)="promptModal.dismiss()"> Close </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content>
+        <div class="prompt-container">
+          <section class="prompt-intro">
+            <h2>{{ selectedCategory }}</h2>
+            <p>Pick a question and see where the conversation goes.</p>
+          </section>
+
+          <div class="prompt-card" *ngFor="let prompt of selectedPrompts">
+            <ion-icon name="chatbubble-outline"></ion-icon>
+            <p>{{ prompt }}</p>
+          </div>
+        </div>
+      </ion-content>
+    </ng-template> </ion-modal
+  >0
 
   <div class="bottom-nav">
     <a routerLink="/home" class="nav-item">
