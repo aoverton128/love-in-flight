@@ -1,36 +1,62 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Let's Connect</ion-title>
+  <ion-toolbar class="app-toolbar">
+    <div class="toolbar-center">
+      <img
+        src="assets/logo/love-in-flight-logo.png"
+        alt="Love in Flight"
+        class="app-logo"
+      />
+    </div>
+
     <ion-buttons slot="end">
-      <ion-button id="connect-profile-modal-trigger" class="profile-button">
-        <ion-icon name="person-outline"></ion-icon>
+      <ion-button class="profile-button" (click)="profileModal.present()">
+        <img
+          src="assets/profile/profile.png"
+          alt="Profile"
+          class="profile-button-image"
+        />
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-modal #profileModal trigger="connect-profile-modal-trigger">
+<ion-modal #profileModal>
   <ng-template>
     <ion-header>
       <ion-toolbar>
         <ion-title>Account</ion-title>
 
-        <ion-buttons slot="end">
-          <ion-button (click)="profileModal.dismiss()"> Close </ion-button>
+        <ion-buttons slot="start">
+          <ion-button
+            class="account-back-button"
+            (click)="profileModal.dismiss()"
+          >
+            <ion-icon name="chevron-back-outline"></ion-icon>
+          </ion-button>
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
 
     <ion-content>
+      <div class="modal-sky">
+        <span class="modal-twinkle modal-star-one"></span>
+        <span class="modal-twinkle modal-star-two"></span>
+        <span class="modal-twinkle modal-star-three"></span>
+        <span class="modal-twinkle modal-star-four"></span>
+        <span class="modal-twinkle modal-star-five"></span>
+        <span class="modal-twinkle modal-star-six"></span>
+        <span class="modal-twinkle modal-star-seven"></span>
+        <span class="modal-twinkle modal-star-eight"></span>
+      </div>
       <div class="account-container">
         <div class="profile-picture">
-          <ion-icon name="person-outline"></ion-icon>
+          <img src="assets/profile/profile.png" alt="Profile" />
         </div>
 
         <h2>Alyssa</h2>
 
         <ion-list lines="none">
-          <ion-item button>
+          <ion-item>
             <ion-icon slot="start" name="person-outline"></ion-icon>
             <ion-label>Profile</ion-label>
           </ion-item>
@@ -44,7 +70,7 @@
             <ion-label>Settings</ion-label>
           </ion-item>
 
-          <ion-item button>
+          <ion-item button (click)="aboutModal.present()">
             <ion-icon slot="start" name="information-circle-outline"></ion-icon>
             <ion-label>About Love in Flight</ion-label>
           </ion-item>
@@ -54,21 +80,93 @@
   </ng-template>
 </ion-modal>
 
+<ion-modal #aboutModal>
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button (click)="aboutModal.dismiss()">
+            <ion-icon name="chevron-back-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+
+        <ion-title>About</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+      <div class="modal-sky">
+        <span class="modal-twinkle modal-star-one"></span>
+        <span class="modal-twinkle modal-star-two"></span>
+        <span class="modal-twinkle modal-star-three"></span>
+        <span class="modal-twinkle modal-star-four"></span>
+        <span class="modal-twinkle modal-star-five"></span>
+        <span class="modal-twinkle modal-star-six"></span>
+        <span class="modal-twinkle modal-star-seven"></span>
+        <span class="modal-twinkle modal-star-eight"></span>
+      </div>
+
+      <div class="about-container">
+        <img
+          src="assets/logo/love-in-flight-logo.png"
+          alt="Love in Flight"
+          class="about-logo"
+        />
+
+        <h2>Different Skies, Same Direction</h2>
+
+        <p>
+          Love in Flight was created to make staying connected in a
+          long-distance relationship feel a little easier.
+        </p>
+
+        <p>
+          It brings together mood check-ins, weekly plans, and conversation
+          prompts in one place so there’s always an easy way to check in, make
+          plans, or find something to talk about.
+        </p>
+
+        <div class="about-version">Version 1.0</div>
+      </div>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
 <ion-content>
+  <div class="page-sky">
+    <span class="twinkle star-one"></span>
+    <span class="twinkle star-two"></span>
+    <span class="twinkle star-three"></span>
+    <span class="twinkle star-four"></span>
+    <span class="twinkle star-five"></span>
+    <span class="twinkle star-six"></span>
+    <span class="twinkle star-seven"></span>
+    <span class="twinkle star-eight"></span>
+    <span class="twinkle star-nine"></span>
+    <span class="twinkle star-ten"></span>
+    <span class="twinkle star-eleven"></span>
+    <span class="twinkle star-twelve"></span>
+    <span class="twinkle star-thirteen"></span>
+    <span class="twinkle star-fourteen"></span>
+    <span class="twinkle star-fifteen"></span>
+    <span class="twinkle star-sixteen"></span>
+    <span class="twinkle star-seventeen"></span>
+    <span class="twinkle star-eighteen"></span>
+  </div>
+
   <div class="connect-container">
     <section class="connect-intro">
       <h1>Pick something to talk about</h1>
-      <p>
-        Choose a category when you want a little help starting a conversation.
-      </p>
+      <p>Choose a category when you need a little help getting started.</p>
     </section>
 
     <section class="category-list">
       <div class="category-card" (click)="openCategory('Us', promptModal)">
         <ion-icon name="heart-outline"></ion-icon>
+
         <div>
           <h2>Us</h2>
-          <p>Memories, appreciation, and your relationship.</p>
+          <p>Memories, little things you appreciate, and your relationship.</p>
         </div>
       </div>
 
@@ -77,9 +175,10 @@
         (click)="openCategory('Light & Fun', promptModal)"
       >
         <ion-icon name="sparkles-outline"></ion-icon>
+
         <div>
           <h2>Light & Fun</h2>
-          <p>Silly questions, favorites, and easy conversation starters.</p>
+          <p>Random questions, favorites, and easy conversation starters.</p>
         </div>
       </div>
 
@@ -88,11 +187,10 @@
         (click)="openCategory('Plans & Dreams', promptModal)"
       >
         <ion-icon name="compass-outline"></ion-icon>
+
         <div>
           <h2>Plans & Dreams</h2>
-          <p>
-            Future plans, goals, and things you want to experience together.
-          </p>
+          <p>Future plans, goals, and things you want to do together.</p>
         </div>
       </div>
 
@@ -101,44 +199,154 @@
         (click)="openCategory('Check-In', promptModal)"
       >
         <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+
         <div>
           <h2>Check-In</h2>
           <p>
-            Questions about how you’re feeling and what’s been on your mind.
+            Questions about how you’re feeling and what’s been on your mind
+            lately.
           </p>
         </div>
       </div>
     </section>
   </div>
 
-  <!-- NEW: prompt modal -->
   <ion-modal #promptModal>
     <ng-template>
       <ion-header>
-        <ion-toolbar>
-          <ion-title>{{ selectedCategory }}</ion-title>
-
-          <ion-buttons slot="end">
-            <ion-button (click)="promptModal.dismiss()"> Close </ion-button>
+        <ion-toolbar class="prompt-toolbar">
+          <ion-buttons slot="start">
+            <ion-button
+              (click)="promptModal.dismiss()"
+              class="prompt-back-button"
+            >
+              <ion-icon name="chevron-back-outline"></ion-icon>
+            </ion-button>
           </ion-buttons>
         </ion-toolbar>
       </ion-header>
 
       <ion-content>
-        <div class="prompt-container">
+        <div class="modal-sky">
+          <span class="modal-twinkle modal-star-one"></span>
+          <span class="modal-twinkle modal-star-two"></span>
+          <span class="modal-twinkle modal-star-three"></span>
+          <span class="modal-twinkle modal-star-four"></span>
+          <span class="modal-twinkle modal-star-five"></span>
+          <span class="modal-twinkle modal-star-six"></span>
+          <span class="modal-twinkle modal-star-seven"></span>
+          <span class="modal-twinkle modal-star-eight"></span>
+        </div>
+        <div
+          class="prompt-container"
+          [ngClass]="categoryClass(selectedCategory)"
+        >
           <section class="prompt-intro">
-            <h2>{{ selectedCategory }}</h2>
-            <p>Pick a question and see where the conversation goes.</p>
+            <div class="prompt-category-title">
+              <ion-icon [name]="categoryIcon(selectedCategory)"></ion-icon>
+              <h2>{{ selectedCategory }}</h2>
+            </div>
+
+            <p>Pick a question and start from there.</p>
           </section>
 
-          <div class="prompt-card" *ngFor="let prompt of selectedPrompts">
+          <div
+            class="prompt-card"
+            *ngFor="let prompt of selectedPrompts"
+            (click)="openPromptSave(prompt, promptSaveModal)"
+          >
             <ion-icon name="chatbubble-outline"></ion-icon>
+
             <p>{{ prompt }}</p>
+
+            <ion-icon
+              class="prompt-arrow"
+              name="chevron-forward-outline"
+            ></ion-icon>
           </div>
         </div>
       </ion-content>
-    </ng-template> </ion-modal
-  >0
+    </ng-template>
+  </ion-modal>
+
+  <ion-modal #promptSaveModal id="prompt-save-modal">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button
+              (click)="closePromptSave(promptSaveModal)"
+              class="prompt-save-back-button"
+            >
+              <ion-icon name="chevron-back-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+
+          <ion-title>Save to Plans</ion-title>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content>
+        <div class="modal-sky">
+          <span class="modal-twinkle modal-star-one"></span>
+          <span class="modal-twinkle modal-star-two"></span>
+          <span class="modal-twinkle modal-star-three"></span>
+          <span class="modal-twinkle modal-star-four"></span>
+          <span class="modal-twinkle modal-star-five"></span>
+          <span class="modal-twinkle modal-star-six"></span>
+          <span class="modal-twinkle modal-star-seven"></span>
+          <span class="modal-twinkle modal-star-eight"></span>
+        </div>
+        <div
+          class="save-prompt-container"
+          [ngClass]="categoryClass(selectedCategory)"
+        >
+          <div class="selected-prompt">
+            <ion-icon [name]="categoryIcon(selectedCategory)"></ion-icon>
+            <p>{{ selectedPrompt }}</p>
+          </div>
+
+          <div class="picker-row">
+            <div class="picker-field">
+              <label>Date</label>
+
+              <div class="picker-display">
+                {{ formatDisplayDate(savePromptDate) }}
+              </div>
+
+              <input
+                class="native-picker-input"
+                type="date"
+                [(ngModel)]="savePromptDate"
+              />
+            </div>
+
+            <div class="picker-field">
+              <label>Time</label>
+
+              <div class="picker-display">
+                {{ formatDisplayTime(savePromptTime) }}
+              </div>
+
+              <input
+                class="native-picker-input"
+                type="time"
+                [(ngModel)]="savePromptTime"
+              />
+            </div>
+          </div>
+
+          <ion-button
+            expand="block"
+            class="save-prompt-button"
+            (click)="savePromptToPlans(promptSaveModal, promptModal)"
+          >
+            Save to Weekly Plans
+          </ion-button>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 
   <div class="bottom-nav">
     <a routerLink="/home" class="nav-item">

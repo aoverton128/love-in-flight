@@ -1,5 +1,5 @@
 ion-content {
-  --background: #f8f5ff;
+  --background: #e3d8f0;
   --color: #332f3d;
 }
 
@@ -9,12 +9,34 @@ ion-toolbar {
   --border-color: transparent;
 }
 
-ion-title {
-  color: #332f3d;
-  font-weight: 700;
+.app-toolbar {
+  --background: #f4effc;
+  --min-height: 72px;
+  position: relative;
+}
+
+.toolbar-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-logo {
+  height: 60px;
+  width: auto;
+  max-width: 200px;
+  object-fit: contain;
+  display: block;
 }
 
 .profile-button {
+  position: relative;
+  z-index: 2;
   --padding-start: 0;
   --padding-end: 0;
   --background: #ffffff;
@@ -29,8 +51,13 @@ ion-title {
   overflow: hidden;
 }
 
-.profile-button ion-icon {
-  font-size: 1.25rem;
+.profile-button-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 50%;
+  pointer-events: none;
 }
 
 .account-container {
@@ -44,22 +71,32 @@ ion-title {
   width: 96px;
   height: 96px;
   margin: 0 auto 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   border-radius: 50%;
+  overflow: hidden;
   background: #eee9fa;
-  color: #7e6da8;
+  box-shadow: 0 6px 18px rgba(63, 54, 88, 0.08);
 }
 
-.profile-picture ion-icon {
-  font-size: 2.6rem;
+.profile-picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .account-container h2 {
   margin: 0 0 26px;
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
   color: #332f3d;
-  font-size: 1.35rem;
+}
+
+.account-container ion-label {
+  font-family: "Quicksand", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: #332f3d;
 }
 
 .account-container ion-list {
@@ -80,23 +117,32 @@ ion-title {
   color: #7e6da8;
 }
 
+.account-back-button {
+  --color: #7e6da8;
+}
+
 .home-container {
   max-width: 700px;
   margin: 0 auto;
   padding: 28px 18px 110px;
   color: #332f3d;
+  position: relative;
+  z-index: 1;
+  font-family: "Quicksand", sans-serif;
 }
 
 .welcome-section {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
 }
 
 .welcome-section h1 {
   margin: 0 0 8px;
   color: #332f3d;
-  font-size: 1.8rem;
+  font-family: "Quicksand", sans-serif;
+  font-size: 25px;
   font-weight: 700;
+  letter-spacing: -0.3px;
 }
 
 .welcome-section p {
@@ -104,6 +150,7 @@ ion-title {
   margin: 0 auto;
   color: #6f6878;
   line-height: 1.5;
+  font-size: 16px;
 }
 
 .mood-section {
@@ -128,18 +175,16 @@ ion-title {
   font-size: 1.2rem;
 }
 
-.falcon-placeholder {
-  width: 140px;
-  height: 140px;
-  max-width: 100%;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: linear-gradient(145deg, #ebe5f8, #f7f2ff);
-  color: #9289a4;
-  font-size: 0.9rem;
+.falcon-avatar {
+  width: 145px;
+  height: 145px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 12px;
+}
+
+.avatar-hidden {
+  visibility: hidden;
 }
 
 .mood-pill {
@@ -160,19 +205,92 @@ ion-title {
   border-radius: 50%;
 }
 
-.partner-mood {
-  background: #f8eef4;
-}
-
-.partner-dot {
-  background: #d58eae;
-}
-
 .mood-action {
   margin: 10px 0 0;
   color: #7e6da8;
   font-size: 0.85rem;
   font-weight: 600;
+}
+
+.mood-pill.happy {
+  background: #fff4c7;
+  color: #8a731f;
+}
+
+.mood-pill.happy .mood-dot {
+  background: #e5c84b;
+}
+
+.mood-pill.excited {
+  background: #ffe7cf;
+  color: #9a632c;
+}
+
+.mood-pill.excited .mood-dot {
+  background: #e89b4d;
+}
+
+.mood-pill.calm {
+  background: #e5f1e8;
+  color: #5d7865;
+}
+
+.mood-pill.calm .mood-dot {
+  background: #8eb29a;
+}
+
+.mood-pill.tired {
+  background: #ece9f2;
+  color: #70697d;
+}
+
+.mood-pill.tired .mood-dot {
+  background: #a29aaf;
+}
+
+.mood-pill.sad {
+  background: #e4edf8;
+  color: #5e7189;
+}
+
+.mood-pill.sad .mood-dot {
+  background: #88a5c7;
+}
+
+.mood-pill.stressed {
+  background: #eee5f2;
+  color: #765f80;
+}
+
+.mood-pill.stressed .mood-dot {
+  background: #a88ab4;
+}
+
+.mood-pill.angry {
+  background: #f7dfdf;
+  color: #8e5555;
+}
+
+.mood-pill.angry .mood-dot {
+  background: #cb7777;
+}
+
+.mood-pill.overwhelmed {
+  background: #eee8e1;
+  color: #75695f;
+}
+
+.mood-pill.overwhelmed .mood-dot {
+  background: #a99a8d;
+}
+
+.mood-pill.playful {
+  background: #f7e3ef;
+  color: #8a5f78;
+}
+
+.mood-pill.playful .mood-dot {
+  background: #d78eaf;
 }
 
 .home-card {
@@ -182,26 +300,32 @@ ion-title {
   color: #332f3d;
   border-radius: 22px;
   box-shadow: 0 8px 22px rgba(63, 54, 88, 0.07);
+  font-family: "Quicksand", sans-serif;
 }
 
 .home-card h3 {
-  margin: 4px 0 0;
-  color: #332f3d;
-  font-size: 1.15rem;
+  font-size: 16px;
+  line-height: 1.45;
+  font-weight: 500;
 }
 
-.home-card p {
-  margin: 9px 0 0;
-  color: #6f6878;
+.home-card p:not(.plan-date) {
+  font-size: 16px;
   line-height: 1.45;
+  font-weight: 500;
+}
+
+.plan-date {
+  font-size: 13px;
+  font-weight: 400;
+  color: #8a8392;
+  margin-top: 6px;
 }
 
 .card-label {
-  color: #91899d;
-  font-size: 0.78rem;
+  font-size: 14px;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.4px;
 }
 
 .bottom-nav {
@@ -237,4 +361,234 @@ ion-title {
 
 .nav-item.active {
   color: #7e6da8;
+}
+
+.mood-picker {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.mood-picker-wrapper {
+  min-height: 75vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+}
+
+.mood-option {
+  border: none;
+  border-radius: 22px;
+  min-height: 100px;
+  background: rgba(255, 255, 255, 0.75);
+  box-shadow: 0 6px 18px rgba(88, 70, 120, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: "Quicksand", sans-serif;
+  color: #6f6289;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+  cursor: pointer;
+}
+
+.mood-option:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 10px 22px rgba(88, 70, 120, 0.14);
+}
+
+.mood-option:active {
+  transform: scale(0.97);
+}
+
+.mood-option ion-icon {
+  font-size: 28px;
+  transition:
+    transform 0.2s ease,
+    color 0.2s ease;
+}
+
+.mood-option:hover ion-icon {
+  transform: scale(1.12);
+}
+
+.mood-option span {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.mood-option.happy {
+  background: #fff8d9;
+  color: #9a8228;
+}
+
+.mood-option.happy ion-icon {
+  color: #d3b632;
+}
+
+.mood-option.excited {
+  background: #fff0df;
+  color: #9a632c;
+}
+
+.mood-option.excited ion-icon {
+  color: #e89b4d;
+}
+
+.mood-option.calm {
+  background: #eaf4ed;
+  color: #5d7865;
+}
+
+.mood-option.calm ion-icon {
+  color: #7fa78b;
+}
+
+.mood-option.tired {
+  background: #efecf5;
+  color: #70697d;
+}
+
+.mood-option.tired ion-icon {
+  color: #9087a0;
+}
+
+.mood-option.sad {
+  background: #e9f0f9;
+  color: #5e7189;
+}
+
+.mood-option.sad ion-icon {
+  color: #7f9fc3;
+}
+
+.mood-option.stressed {
+  background: #f0e8f4;
+  color: #765f80;
+}
+
+.mood-option.stressed ion-icon {
+  color: #9e7bac;
+}
+
+.mood-option.angry {
+  background: #fae5e5;
+  color: #8e5555;
+}
+
+.mood-option.angry ion-icon {
+  color: #c96d6d;
+}
+
+.mood-option.overwhelmed {
+  background: #f0ebe6;
+  color: #75695f;
+}
+
+.mood-option.overwhelmed ion-icon {
+  color: #9d8f82;
+}
+
+.mood-option.playful {
+  background: #f9e7f1;
+  color: #8a5f78;
+}
+
+.mood-option.playful ion-icon {
+  color: #ce7fa5;
+}
+
+.mood-toolbar {
+  --background: #f4effc;
+  --min-height: 72px;
+  position: relative;
+}
+
+.mood-toolbar-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.mood-logo {
+  height: 60px;
+  width: auto;
+  max-width: 200px;
+  object-fit: contain;
+  display: block;
+}
+
+.mood-back-button {
+  --color: #7e6da8;
+}
+
+.mood-back-button ion-icon {
+  font-size: 24px;
+}
+
+.mood-modal-title {
+  margin: 0 0 18px;
+  transform: translateY(-25px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #5f5274;
+}
+
+.mood-modal-title::before,
+.mood-modal-title::after {
+  content: "✦";
+  font-size: 10px;
+  color: #d5a95b;
+  opacity: 0.8;
+}
+
+.about-container {
+  position: relative;
+  z-index: 1;
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 42px 28px;
+  text-align: center;
+}
+
+.about-logo {
+  width: 190px;
+  max-width: 80%;
+  height: auto;
+  margin-bottom: 24px;
+}
+
+.about-container h2 {
+  margin: 0 0 18px;
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #332f3d;
+}
+
+.about-container p {
+  color: #6f6878;
+  font-family: "Quicksand", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.55;
+}
+
+.about-version {
+  font-family: "Quicksand", sans-serif;
+  font-size: 12px;
+  color: #9a91aa;
 }

@@ -1,36 +1,62 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Weekly Plans</ion-title>
+  <ion-toolbar class="app-toolbar">
+    <div class="toolbar-center">
+      <img
+        src="assets/logo/love-in-flight-logo.png"
+        alt="Love in Flight"
+        class="app-logo"
+      />
+    </div>
+
     <ion-buttons slot="end">
-      <ion-button id="plans-profile-modal-trigger" class="profile-button">
-        <ion-icon name="person-outline"></ion-icon>
+      <ion-button class="profile-button" (click)="profileModal.present()">
+        <img
+          src="assets/profile/profile.png"
+          alt="Profile"
+          class="profile-button-image"
+        />
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-modal #profileModal trigger="plans-profile-modal-trigger">
+<ion-modal #profileModal>
   <ng-template>
     <ion-header>
       <ion-toolbar>
         <ion-title>Account</ion-title>
 
-        <ion-buttons slot="end">
-          <ion-button (click)="profileModal.dismiss()"> Close </ion-button>
+        <ion-buttons slot="start">
+          <ion-button
+            class="account-back-button"
+            (click)="profileModal.dismiss()"
+          >
+            <ion-icon name="chevron-back-outline"></ion-icon>
+          </ion-button>
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
 
     <ion-content>
+      <div class="modal-sky">
+        <span class="modal-twinkle modal-star-one"></span>
+        <span class="modal-twinkle modal-star-two"></span>
+        <span class="modal-twinkle modal-star-three"></span>
+        <span class="modal-twinkle modal-star-four"></span>
+        <span class="modal-twinkle modal-star-five"></span>
+        <span class="modal-twinkle modal-star-six"></span>
+        <span class="modal-twinkle modal-star-seven"></span>
+        <span class="modal-twinkle modal-star-eight"></span>
+      </div>
       <div class="account-container">
         <div class="profile-picture">
-          <ion-icon name="person-outline"></ion-icon>
+          <img src="assets/profile/profile.png" alt="Profile" />
         </div>
 
         <h2>Alyssa</h2>
 
         <ion-list lines="none">
-          <ion-item button>
+          <ion-item>
             <ion-icon slot="start" name="person-outline"></ion-icon>
             <ion-label>Profile</ion-label>
           </ion-item>
@@ -44,7 +70,7 @@
             <ion-label>Settings</ion-label>
           </ion-item>
 
-          <ion-item button>
+          <ion-item button (click)="aboutModal.present()">
             <ion-icon slot="start" name="information-circle-outline"></ion-icon>
             <ion-label>About Love in Flight</ion-label>
           </ion-item>
@@ -54,11 +80,83 @@
   </ng-template>
 </ion-modal>
 
+<ion-modal #aboutModal>
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button (click)="aboutModal.dismiss()">
+            <ion-icon name="chevron-back-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+
+        <ion-title>About</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+      <div class="modal-sky">
+        <span class="modal-twinkle modal-star-one"></span>
+        <span class="modal-twinkle modal-star-two"></span>
+        <span class="modal-twinkle modal-star-three"></span>
+        <span class="modal-twinkle modal-star-four"></span>
+        <span class="modal-twinkle modal-star-five"></span>
+        <span class="modal-twinkle modal-star-six"></span>
+        <span class="modal-twinkle modal-star-seven"></span>
+        <span class="modal-twinkle modal-star-eight"></span>
+      </div>
+
+      <div class="about-container">
+        <img
+          src="assets/logo/love-in-flight-logo.png"
+          alt="Love in Flight"
+          class="about-logo"
+        />
+
+        <h2>Different Skies, Same Direction</h2>
+
+        <p>
+          Love in Flight was created to make staying connected in a
+          long-distance relationship feel a little easier.
+        </p>
+
+        <p>
+          It brings together mood check-ins, weekly plans, and conversation
+          prompts in one place so there’s always an easy way to check in, make
+          plans, or find something to talk about.
+        </p>
+
+        <div class="about-version">Version 1.0</div>
+      </div>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
 <ion-content>
+  <div class="page-sky">
+    <span class="twinkle star-one"></span>
+    <span class="twinkle star-two"></span>
+    <span class="twinkle star-three"></span>
+    <span class="twinkle star-four"></span>
+    <span class="twinkle star-five"></span>
+    <span class="twinkle star-six"></span>
+    <span class="twinkle star-seven"></span>
+    <span class="twinkle star-eight"></span>
+    <span class="twinkle star-nine"></span>
+    <span class="twinkle star-ten"></span>
+    <span class="twinkle star-eleven"></span>
+    <span class="twinkle star-twelve"></span>
+    <span class="twinkle star-thirteen"></span>
+    <span class="twinkle star-fourteen"></span>
+    <span class="twinkle star-fifteen"></span>
+    <span class="twinkle star-sixteen"></span>
+    <span class="twinkle star-seventeen"></span>
+    <span class="twinkle star-eighteen"></span>
+  </div>
   <div class="plans-container">
     <section class="plans-intro">
-      <h1>Plan a little time together</h1>
-      <p>Keep track of the things you want to do together this week.</p>
+      <h1>Plan something together</h1>
+      <p>Keep track of what you want to do together.</p>
     </section>
 
     <div class="week-navigation">
@@ -87,12 +185,12 @@
       </div>
     </section>
 
-    <section class="selected-day-header">
+    <section class="selected-day-header" *ngIf="selectedDay">
       <h2>{{ selectedDay.name }}</h2>
       <span>{{ selectedDay.fullDate }}</span>
     </section>
 
-    <section class="plan-list">
+    <section class="plan-list" *ngIf="selectedDay">
       <div
         class="plan-card"
         *ngFor="let plan of selectedDay.plans"
@@ -111,7 +209,7 @@
       </div>
 
       <div class="empty-plans" *ngIf="selectedDay.plans.length === 0">
-        No plans yet for this day.
+        Nothing planned yet.
       </div>
     </section>
 
@@ -128,47 +226,71 @@
       <ng-template>
         <ion-header>
           <ion-toolbar>
-            <ion-title>Add Plan</ion-title>
-
-            <ion-buttons slot="end">
-              <ion-button (click)="addPlanModal.dismiss()"> Cancel </ion-button>
+            <ion-buttons slot="start">
+              <ion-button
+                class="plan-modal-back-button"
+                (click)="addPlanModal.dismiss()"
+              >
+                <ion-icon name="chevron-back-outline"></ion-icon>
+              </ion-button>
             </ion-buttons>
+
+            <ion-title class="plan-modal-title">Add Plan</ion-title>
           </ion-toolbar>
         </ion-header>
 
         <ion-content>
-          <div class="add-plan-container">
-            <ion-item>
-              <ion-input
-                label="Plan Title"
-                labelPlacement="stacked"
+          <div class="modal-sky">
+            <span class="modal-twinkle modal-star-one"></span>
+            <span class="modal-twinkle modal-star-two"></span>
+            <span class="modal-twinkle modal-star-three"></span>
+            <span class="modal-twinkle modal-star-four"></span>
+            <span class="modal-twinkle modal-star-five"></span>
+            <span class="modal-twinkle modal-star-six"></span>
+            <span class="modal-twinkle modal-star-seven"></span>
+            <span class="modal-twinkle modal-star-eight"></span>
+          </div>
+          <div class="plan-modal-container">
+            <div class="plan-title-field">
+              <label>Plan Title</label>
+
+              <input
+                class="plan-title-input"
+                type="text"
                 placeholder="What are you planning?"
                 [(ngModel)]="newPlanTitle"
-              >
-              </ion-input>
-            </ion-item>
+              />
+            </div>
 
-            <ion-item>
-              <ion-input
-                type="date"
-                label="Date"
-                labelPlacement="stacked"
-                helperText="Tap to choose a date"
-                [(ngModel)]="newPlanDate"
-              >
-              </ion-input>
-            </ion-item>
+            <div class="picker-row">
+              <div class="picker-field">
+                <label>Date</label>
 
-            <ion-item>
-              <ion-input
-                type="time"
-                label="Time"
-                labelPlacement="stacked"
-                helperText="Tap to choose a time"
-                [(ngModel)]="newPlanTime"
-              >
-              </ion-input>
-            </ion-item>
+                <div class="picker-display">
+                  {{ formatDisplayDate(newPlanDate) }}
+                </div>
+
+                <input
+                  class="native-picker-input"
+                  type="date"
+                  [(ngModel)]="newPlanDate"
+                />
+              </div>
+
+              <div class="picker-field">
+                <label>Time</label>
+
+                <div class="picker-display">
+                  {{ formatDisplayTime(newPlanTime) }}
+                </div>
+
+                <input
+                  class="native-picker-input"
+                  type="time"
+                  [(ngModel)]="newPlanTime"
+                />
+              </div>
+            </div>
 
             <ion-button
               expand="block"
@@ -187,51 +309,80 @@
     <ng-template>
       <ion-header>
         <ion-toolbar>
-          <ion-title>Edit Plan</ion-title>
+          <ion-buttons slot="start">
+            <ion-button
+              class="plan-modal-back-button"
+              (click)="editPlanModal.dismiss()"
+            >
+              <ion-icon name="chevron-back-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+
+          <ion-title class="plan-modal-title">Edit Plan</ion-title>
 
           <ion-buttons slot="end">
-            <ion-button (click)="confirmDeletePlan(editPlanModal)">
+            <ion-button
+              class="delete-plan-button"
+              (click)="confirmDeletePlan(editPlanModal)"
+            >
               <ion-icon name="trash-outline"></ion-icon>
             </ion-button>
-
-            <ion-button (click)="editPlanModal.dismiss()"> Cancel </ion-button>
           </ion-buttons>
         </ion-toolbar>
       </ion-header>
 
       <ion-content>
-        <div class="add-plan-container">
-          <ion-item>
-            <ion-input
-              label="Plan Title"
-              labelPlacement="stacked"
+        <div class="modal-sky">
+          <span class="modal-twinkle modal-star-one"></span>
+          <span class="modal-twinkle modal-star-two"></span>
+          <span class="modal-twinkle modal-star-three"></span>
+          <span class="modal-twinkle modal-star-four"></span>
+          <span class="modal-twinkle modal-star-five"></span>
+          <span class="modal-twinkle modal-star-six"></span>
+          <span class="modal-twinkle modal-star-seven"></span>
+          <span class="modal-twinkle modal-star-eight"></span>
+        </div>
+        <div class="plan-modal-container">
+          <div class="plan-title-field">
+            <label>Plan Title</label>
+
+            <input
+              class="plan-title-input"
+              type="text"
               placeholder="What are you planning?"
               [(ngModel)]="editPlanTitle"
-            >
-            </ion-input>
-          </ion-item>
+            />
+          </div>
 
-          <ion-item>
-            <ion-input
-              type="date"
-              label="Date"
-              labelPlacement="stacked"
-              helperText="Tap to choose a date"
-              [(ngModel)]="editPlanDate"
-            >
-            </ion-input>
-          </ion-item>
+          <div class="picker-row">
+            <div class="picker-field">
+              <label>Date</label>
 
-          <ion-item>
-            <ion-input
-              type="time"
-              label="Time"
-              labelPlacement="stacked"
-              helperText="Tap to choose a time"
-              [(ngModel)]="editPlanTime"
-            >
-            </ion-input>
-          </ion-item>
+              <div class="picker-display">
+                {{ formatDisplayDate(editPlanDate) }}
+              </div>
+
+              <input
+                class="native-picker-input"
+                type="date"
+                [(ngModel)]="editPlanDate"
+              />
+            </div>
+
+            <div class="picker-field">
+              <label>Time</label>
+
+              <div class="picker-display">
+                {{ formatDisplayTime(editPlanTime) }}
+              </div>
+
+              <input
+                class="native-picker-input"
+                type="time"
+                [(ngModel)]="editPlanTime"
+              />
+            </div>
+          </div>
 
           <ion-button
             expand="block"

@@ -9,12 +9,7 @@ import { PlansPageRoutingModule } from './plans-routing.module';
 import { PlansPage } from './plans.page';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    PlansPageRoutingModule
-  ],
-  declarations: [PlansPage]
+  imports: [CommonModule, FormsModule, IonicModule, PlansPageRoutingModule],
+  declarations: [PlansPage],
 })
 export class PlansPageModule {}

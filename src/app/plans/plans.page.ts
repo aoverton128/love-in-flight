@@ -21,6 +21,8 @@ export class PlansPage implements OnInit {
 
   days: any[] = [];
 
+  selectedDate: Date | null = null;
+
   selectedDay: any;
 
   newPlanTitle = '';
@@ -40,11 +42,15 @@ export class PlansPage implements OnInit {
 
   ngOnInit() {
     this.generateWeek();
+  }
+
+  ionViewWillEnter() {
     this.loadPlans();
   }
 
   selectDay(day: any) {
     this.selectedDay = day;
+    this.selectedDate = new Date(day.fullDateValue);
   }
 
   openEditPlan(plan: any, editPlanModal: any) {
@@ -186,12 +192,26 @@ export class PlansPage implements OnInit {
       });
     }
 
-    this.selectedDay = this.days[0];
+    const dateToSelect = this.selectedDate ?? new Date();
+
+    this.selectedDay =
+      this.days.find((day) => {
+        const dayDate = day.fullDateValue;
+
+        return (
+          dayDate.getFullYear() === dateToSelect.getFullYear() &&
+          dayDate.getMonth() === dateToSelect.getMonth() &&
+          dayDate.getDate() === dateToSelect.getDate()
+        );
+      }) || null;
+
+    if (!this.selectedDate && this.selectedDay) {
+      this.selectedDate = new Date(this.selectedDay.fullDateValue);
+    }
   }
 
   previousWeek() {
     this.currentWeekStart.setDate(this.currentWeekStart.getDate() - 7);
-
     this.currentWeekStart = new Date(this.currentWeekStart);
 
     this.generateWeek();
@@ -200,7 +220,6 @@ export class PlansPage implements OnInit {
 
   nextWeek() {
     this.currentWeekStart.setDate(this.currentWeekStart.getDate() + 7);
-
     this.currentWeekStart = new Date(this.currentWeekStart);
 
     this.generateWeek();
@@ -208,6 +227,10 @@ export class PlansPage implements OnInit {
   }
 
   async loadPlans() {
+    this.days.forEach((day) => {
+      day.plans = [];
+    });
+
     try {
       const querySnapshot = await getDocs(collection(db, 'plans'));
 
@@ -239,6 +262,11 @@ export class PlansPage implements OnInit {
             dateTime: planDate,
           });
         }
+      });
+      this.days.forEach((day) => {
+        day.plans.sort(
+          (a: any, b: any) => a.dateTime.getTime() - b.dateTime.getTime(),
+        );
       });
     } catch (error) {
       console.error('Error loading plans:', error);
@@ -305,6 +333,36 @@ export class PlansPage implements OnInit {
     console.log(`Reminder scheduled for ${reminderTime.toLocaleString()}`);
   }
 
+  formatDisplayDate(value: string): string {
+    if (!value) {
+      return 'Choose a date';
+    }
+
+    const [year, month, day] = value.split('-').map(Number);
+    const date = new Date(year, month - 1, day);
+
+    return date.toLocaleDateString('en-US', {
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric',
+    });
+  }
+
+  formatDisplayTime(value: string): string {
+    if (!value) {
+      return 'Choose a time';
+    }
+
+    const [hours, minutes] = value.split(':').map(Number);
+    const time = new Date();
+    time.setHours(hours, minutes, 0, 0);
+
+    return time.toLocaleTimeString('en-US', {
+      hour: 'numeric',
+      minute: '2-digit',
+    });
+  }
+
   async savePlan(addPlanModal: any) {
     if (!this.newPlanTitle || !this.newPlanDate || !this.newPlanTime) {
       console.log('Please complete all plan fields.');
@@ -341,6 +399,10 @@ export class PlansPage implements OnInit {
           }),
           dateTime: planDateTime,
         });
+
+        matchingDay.plans = [...matchingDay.plans].sort(
+          (a: any, b: any) => a.dateTime.getTime() - b.dateTime.getTime(),
+        );
       }
 
       console.log('Plan saved to Firebase.');

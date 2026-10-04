@@ -1,5 +1,15 @@
+ion-content,
+ion-toolbar,
+ion-button,
+ion-title,
+ion-item,
+ion-input,
+.plans-container {
+  font-family: "Quicksand", sans-serif;
+}
+
 ion-content {
-  --background: #f8f5ff;
+  --background: #e3d8f0;
   --color: #332f3d;
 }
 
@@ -9,8 +19,29 @@ ion-toolbar {
   --border-color: transparent;
 }
 
-ion-title {
-  font-weight: 700;
+.app-toolbar {
+  --background: #f4effc;
+  --min-height: 72px;
+  position: relative;
+}
+
+.toolbar-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-logo {
+  height: 60px;
+  width: auto;
+  max-width: 220px;
+  object-fit: contain;
+  display: block;
 }
 
 .profile-button {
@@ -35,26 +66,19 @@ ion-title {
   text-align: center;
 }
 
-.profile-picture {
-  width: 96px;
-  height: 96px;
-  margin: 0 auto 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: #eee9fa;
-  color: #7e6da8;
-}
-
-.profile-picture ion-icon {
-  font-size: 2.6rem;
-}
-
 .account-container h2 {
   margin: 0 0 26px;
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
   color: #332f3d;
-  font-size: 1.35rem;
+}
+
+.account-container ion-label {
+  font-family: "Quicksand", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: #332f3d;
 }
 
 .account-container ion-list {
@@ -75,6 +99,10 @@ ion-title {
   color: #7e6da8;
 }
 
+.account-back-button {
+  --color: #7e6da8;
+}
+
 .plans-container {
   max-width: 700px;
   margin: 0 auto;
@@ -83,21 +111,25 @@ ion-title {
 
 .plans-intro {
   text-align: center;
-  margin-bottom: 28px;
+  margin-bottom: 24px;
 }
 
 .plans-intro h1 {
-  margin: 0 0 8px;
-  color: #332f3d;
-  font-size: 1.8rem;
+  font-family: "Quicksand", sans-serif;
+  font-size: 25px;
   font-weight: 700;
+  letter-spacing: -0.4px;
+  color: #332f3d;
+  margin: 0 0 8px 0;
 }
 
 .plans-intro p {
-  max-width: 420px;
-  margin: 0 auto;
-  color: #6f6878;
+  font-family: "Quicksand", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
   line-height: 1.5;
+  color: #6f6878;
+  margin: 0;
 }
 
 .week-navigation {
@@ -109,7 +141,7 @@ ion-title {
 }
 
 .week-navigation ion-button {
-  --color: #7e6da8;
+  --color: #c79b45;
   --background: transparent;
   --box-shadow: none;
   --padding-start: 8px;
@@ -123,17 +155,71 @@ ion-title {
 }
 
 .week-label {
-  color: #332f3d;
-  font-size: 0.95rem;
-  font-weight: 700;
-  text-align: center;
+  font-family: "Quicksand", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .week-strip {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 6px;
-  margin-bottom: 24px;
+  margin-bottom: 22px;
+}
+
+.day-name {
+  font-family: "Quicksand", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.day-number {
+  font-family: "Quicksand", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.day-option:nth-child(1) {
+  background: #f9edf5;
+}
+
+.day-option:nth-child(2) {
+  background: #fff5df;
+}
+
+.day-option:nth-child(3) {
+  background: #eef0fb;
+}
+
+.day-option:nth-child(4) {
+  background: #edf4f2;
+}
+
+.day-option:nth-child(5) {
+  background: #f5eefb;
+}
+
+.day-option:nth-child(6) {
+  background: #fff0ec;
+}
+
+.day-option:nth-child(7) {
+  background: #eef6fb;
+}
+
+.day-option.selected {
+  background: linear-gradient(145deg, #cbbfe4, #b9add8);
+  color: #3f3949;
+  box-shadow: 0 7px 16px rgba(88, 70, 120, 0.16);
+}
+
+.day-option.selected .day-name,
+.day-option.selected .day-number {
+  color: #3f3949;
+}
+
+.day-option.selected:hover {
+  background: linear-gradient(145deg, #cbbfe4, #b9add8);
 }
 
 .day-option {
@@ -147,26 +233,20 @@ ion-title {
   border-radius: 16px;
   color: #7f7889;
   box-shadow: 0 4px 14px rgba(63, 54, 88, 0.05);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+  cursor: pointer;
 }
 
-.day-name {
-  font-size: 0.67rem;
-  font-weight: 700;
+.day-option:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 7px 16px rgba(88, 70, 120, 0.12);
 }
 
-.day-number {
-  font-size: 1rem;
-  font-weight: 700;
-  color: #332f3d;
-}
-
-.day-option.selected {
-  background: #7e6da8;
-  color: #ffffff;
-}
-
-.day-option.selected .day-number {
-  color: #ffffff;
+.day-option:active {
+  transform: scale(0.96);
 }
 
 .selected-day-header {
@@ -174,16 +254,126 @@ ion-title {
 }
 
 .selected-day-header h2 {
-  margin: 0;
+  font-family: "Quicksand", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
   color: #332f3d;
-  font-size: 1.25rem;
 }
 
 .selected-day-header span {
+  font-family: "Quicksand", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #8a8392;
+}
+
+.plan-modal-container {
+  max-width: 460px;
+  margin: 0 auto;
+  padding: 30px 24px;
+}
+
+.plan-modal-back-button {
+  --color: #7e6da8;
+}
+
+.delete-plan-button {
+  --color: #8a8392;
+}
+
+.plan-modal-title {
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #332f3d;
+}
+
+.native-picker-input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  border: 0;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.plan-title-field,
+.picker-field {
+  position: relative;
+}
+
+.plan-title-field {
+  margin-bottom: 20px;
+}
+
+.plan-title-field label,
+.picker-field label {
   display: block;
-  margin-top: 3px;
-  color: #91899d;
-  font-size: 0.88rem;
+  margin: 0 0 7px 4px;
+  font-family: "Quicksand", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #5f5868;
+}
+
+.plan-title-input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 52px;
+  padding: 0 16px;
+  border: none;
+  outline: none;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 5px 14px rgba(63, 54, 88, 0.06);
+  font-family: "Quicksand", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #8f8799;
+  caret-color: #7e6da8;
+}
+
+.plan-title-input::placeholder {
+  color: #9a91aa;
+  opacity: 1;
+}
+
+.plan-title-input:focus {
+  border: none;
+  outline: none;
+  box-shadow: 0 6px 16px rgba(88, 70, 120, 0.11);
+}
+
+.picker-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 0 0 24px;
+}
+
+.picker-display {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 14px;
+  border: none;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 5px 14px rgba(63, 54, 88, 0.06);
+  display: flex;
+  align-items: center;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #8f8799;
+}
+
+.picker-display:hover {
+  box-shadow: 0 7px 18px rgba(63, 54, 88, 0.1);
 }
 
 .plan-list {
@@ -209,6 +399,19 @@ ion-title {
   background: #ffffff;
   border-radius: 22px;
   box-shadow: 0 8px 22px rgba(63, 54, 88, 0.07);
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.plan-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(88, 70, 120, 0.13);
+}
+
+.plan-card:active {
+  transform: scale(0.985);
 }
 
 .plan-info {
@@ -216,15 +419,21 @@ ion-title {
 }
 
 .plan-info h2 {
-  margin: 0 0 4px;
+  font-family: "Quicksand", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
   color: #332f3d;
-  font-size: 1.1rem;
+  margin: 0 0 3px 0;
+  line-height: 1.3;
 }
 
 .plan-info p {
+  font-family: "Quicksand", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #8a8392;
   margin: 0;
-  color: #6f6878;
-  font-size: 0.92rem;
+  line-height: 1.2;
 }
 
 .plan-icon {
@@ -234,13 +443,13 @@ ion-title {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  background: #eee9fa;
+  background: #fff5df;
   border-radius: 16px;
 }
 
 .plan-icon ion-icon {
   font-size: 1.35rem;
-  color: #7e6da8;
+  color: #d9a447;
 }
 
 .plan-arrow {
@@ -250,48 +459,29 @@ ion-title {
 }
 
 .add-plan-button {
-  margin-top: 4px;
+  margin-top: 18px;
   --background: #7e6da8;
-  --background-hover: #705f99;
-  --background-activated: #6a598f;
-  --border-radius: 16px;
-  --box-shadow: none;
-  text-transform: none;
-  font-weight: 600;
-}
-
-.add-plan-container {
-  max-width: 420px;
-  margin: 0 auto;
-  padding: 28px 22px;
-}
-
-.add-plan-container ion-item {
-  --background: #ffffff;
-  --color: #332f3d;
+  --color: #ffffff;
   --border-radius: 18px;
-  --padding-start: 16px;
-  --inner-padding-end: 16px;
-  margin-bottom: 16px;
-  box-shadow: 0 6px 18px rgba(63, 54, 88, 0.06);
-}
-
-.add-plan-container ion-input {
-  --color: #332f3d;
-  --placeholder-color: #9a91aa;
-  --highlight-color-focused: #7e6da8;
-  --highlight-color-valid: #7e6da8;
-  --highlight-color-invalid: #7e6da8;
+  height: 48px;
+  font-family: "Quicksand", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: none;
+  box-shadow: 0 6px 16px rgba(88, 70, 120, 0.14);
 }
 
 .save-plan-button {
-  margin-top: 24px;
+  margin-top: 4px;
   --background: #7e6da8;
   --color: #ffffff;
   --border-radius: 18px;
   height: 50px;
+  font-family: "Quicksand", sans-serif;
+  font-size: 15px;
   font-weight: 600;
   text-transform: none;
+  box-shadow: 0 6px 16px rgba(88, 70, 120, 0.14);
 }
 
 .bottom-nav {
@@ -327,4 +517,68 @@ ion-title {
 
 .nav-item.active {
   color: #7e6da8;
+}
+
+.profile-picture {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #eee9fa;
+  box-shadow: 0 6px 18px rgba(63, 54, 88, 0.08);
+}
+
+.profile-picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.profile-button-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.about-container {
+  position: relative;
+  z-index: 1;
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 42px 28px;
+  text-align: center;
+}
+
+.about-logo {
+  width: 190px;
+  max-width: 80%;
+  height: auto;
+  margin-bottom: 24px;
+}
+
+.about-container h2 {
+  margin: 0 0 18px;
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #332f3d;
+}
+
+.about-container p {
+  color: #6f6878;
+  font-family: "Quicksand", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.55;
+}
+
+.about-version {
+  font-family: "Quicksand", sans-serif;
+  font-size: 12px;
+  color: #9a91aa;
 }

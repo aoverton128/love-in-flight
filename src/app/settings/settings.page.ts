@@ -11,8 +11,6 @@ export class SettingsPage implements OnInit {
   reminderIndex = 1;
   reminderLabel = '30 minutes before';
 
-  constructor() {}
-
   ngOnInit() {
     const savedEnabled = localStorage.getItem('planRemindersEnabled');
     const savedReminderIndex = localStorage.getItem('reminderIndex');

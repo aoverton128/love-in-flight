@@ -1,16 +1,21 @@
 ion-content {
-  --background: #f8f5ff;
+  --background: #e3d8f0;
   --color: #332f3d;
+  font-family: "Quicksand", sans-serif;
 }
 
 ion-toolbar {
   --background: #f4effc;
   --color: #332f3d;
   --border-color: transparent;
+  font-family: "Quicksand", sans-serif;
 }
 
 ion-title {
-  font-weight: 700;
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #332f3d;
 }
 
 .settings-container {
@@ -22,7 +27,9 @@ ion-title {
 .settings-section h2 {
   margin: 0 0 14px;
   color: #332f3d;
-  font-size: 1.2rem;
+  font-family: "Quicksand", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .setting-card {
@@ -44,13 +51,17 @@ ion-title {
 .setting-text h3 {
   margin: 0 0 4px;
   color: #332f3d;
-  font-size: 1.05rem;
+  font-family: "Quicksand", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
 }
 
 .setting-text p {
   margin: 0;
   color: #6f6878;
-  font-size: 0.9rem;
+  font-family: "Quicksand", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
   font-style: italic;
   line-height: 1.4;
 }
@@ -66,13 +77,16 @@ ion-title {
 .reminder-options h3 {
   margin: 0 0 4px;
   color: #332f3d;
-  font-size: 1rem;
+  font-family: "Quicksand", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
 }
 
 .reminder-options p {
   margin: 0 0 12px;
   color: #7e6da8;
-  font-size: 0.9rem;
+  font-family: "Quicksand", sans-serif;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -82,6 +96,7 @@ ion-range {
   --knob-background: #7e6da8;
   --pin-background: #7e6da8;
   --pin-color: #ffffff;
+  font-family: "Quicksand", sans-serif;
 }
 
 .range-labels {
@@ -89,5 +104,7 @@ ion-range {
   justify-content: space-between;
   gap: 8px;
   color: #91899d;
-  font-size: 0.75rem;
+  font-family: "Quicksand", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
 }

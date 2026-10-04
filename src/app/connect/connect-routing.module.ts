@@ -6,8 +6,8 @@ import { ConnectPage } from './connect.page';
 const routes: Routes = [
   {
     path: '',
-    component: ConnectPage
-  }
+    component: ConnectPage,
+  },
 ];
 
 @NgModule({

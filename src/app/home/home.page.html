@@ -1,36 +1,63 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Love in Flight</ion-title>
+  <ion-toolbar class="app-toolbar">
+    <div class="toolbar-center">
+      <img
+        src="assets/logo/love-in-flight-logo.png"
+        alt="Love in Flight"
+        class="app-logo"
+      />
+    </div>
+
     <ion-buttons slot="end">
-      <ion-button id="home-profile-modal-trigger" class="profile-button">
-        <ion-icon name="person-outline"></ion-icon>
+      <ion-button class="profile-button" (click)="profileModal.present()">
+        <img
+          src="assets/profile/profile.png"
+          alt="Profile"
+          class="profile-button-image"
+        />
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-modal #profileModal trigger="home-profile-modal-trigger">
+<ion-modal #profileModal trigger>
   <ng-template>
     <ion-header>
       <ion-toolbar>
         <ion-title>Account</ion-title>
 
-        <ion-buttons slot="end">
-          <ion-button (click)="profileModal.dismiss()"> Close </ion-button>
+        <ion-buttons slot="start">
+          <ion-button
+            class="account-back-button"
+            (click)="profileModal.dismiss()"
+          >
+            <ion-icon name="chevron-back-outline"></ion-icon>
+          </ion-button>
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
 
     <ion-content>
+      <div class="modal-sky">
+        <span class="modal-twinkle modal-star-one"></span>
+        <span class="modal-twinkle modal-star-two"></span>
+        <span class="modal-twinkle modal-star-three"></span>
+        <span class="modal-twinkle modal-star-four"></span>
+        <span class="modal-twinkle modal-star-five"></span>
+        <span class="modal-twinkle modal-star-six"></span>
+        <span class="modal-twinkle modal-star-seven"></span>
+        <span class="modal-twinkle modal-star-eight"></span>
+      </div>
+
       <div class="account-container">
         <div class="profile-picture">
-          <ion-icon name="person-outline"></ion-icon>
+          <img src="assets/profile/profile.png" alt="Profile" />
         </div>
 
         <h2>Alyssa</h2>
 
         <ion-list lines="none">
-          <ion-item button>
+          <ion-item>
             <ion-icon slot="start" name="person-outline"></ion-icon>
             <ion-label>Profile</ion-label>
           </ion-item>
@@ -44,7 +71,7 @@
             <ion-label>Settings</ion-label>
           </ion-item>
 
-          <ion-item button>
+          <ion-item button (click)="aboutModal.present()">
             <ion-icon slot="start" name="information-circle-outline"></ion-icon>
             <ion-label>About Love in Flight</ion-label>
           </ion-item>
@@ -54,49 +81,188 @@
   </ng-template>
 </ion-modal>
 
+<ion-modal #aboutModal>
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button (click)="aboutModal.dismiss()">
+            <ion-icon name="chevron-back-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+
+        <ion-title>About</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+      <div class="modal-sky">
+        <span class="modal-twinkle modal-star-one"></span>
+        <span class="modal-twinkle modal-star-two"></span>
+        <span class="modal-twinkle modal-star-three"></span>
+        <span class="modal-twinkle modal-star-four"></span>
+        <span class="modal-twinkle modal-star-five"></span>
+        <span class="modal-twinkle modal-star-six"></span>
+        <span class="modal-twinkle modal-star-seven"></span>
+        <span class="modal-twinkle modal-star-eight"></span>
+      </div>
+
+      <div class="about-container">
+        <img
+          src="assets/logo/love-in-flight-logo.png"
+          alt="Love in Flight"
+          class="about-logo"
+        />
+
+        <h2>Different Skies, Same Direction</h2>
+
+        <p>
+          Love in Flight was created to make staying connected in a
+          long-distance relationship feel a little easier.
+        </p>
+
+        <p>
+          It brings together mood check-ins, weekly plans, and conversation
+          prompts in one place so there’s always an easy way to check in, make
+          plans, or find something to talk about.
+        </p>
+
+        <div class="about-version">Version 1.0</div>
+      </div>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
 <ion-content>
+  <div class="page-sky">
+    <span class="twinkle star-one"></span>
+    <span class="twinkle star-two"></span>
+    <span class="twinkle star-three"></span>
+    <span class="twinkle star-four"></span>
+    <span class="twinkle star-five"></span>
+    <span class="twinkle star-six"></span>
+    <span class="twinkle star-seven"></span>
+    <span class="twinkle star-eight"></span>
+    <span class="twinkle star-nine"></span>
+    <span class="twinkle star-ten"></span>
+    <span class="twinkle star-eleven"></span>
+    <span class="twinkle star-twelve"></span>
+    <span class="twinkle star-thirteen"></span>
+    <span class="twinkle star-fourteen"></span>
+    <span class="twinkle star-fifteen"></span>
+    <span class="twinkle star-sixteen"></span>
+    <span class="twinkle star-seventeen"></span>
+    <span class="twinkle star-eighteen"></span>
+  </div>
   <div class="home-container">
     <section class="welcome-section">
       <h1>How are we feeling today?</h1>
-      <p>Check in with each other and stay connected, even from far away.</p>
+      <p>Check in and see how the other person’s doing.</p>
     </section>
 
     <section class="mood-section">
-      <div class="person-card">
-        <div class="falcon-placeholder">Falcon</div>
+      <div class="person-card" (click)="moodModal.present()">
+        <img
+          class="falcon-avatar"
+          [src]="currentMoodImage"
+          [alt]="currentMood + ' falcon avatar'"
+          [class.avatar-hidden]="!moodLoaded"
+        />
 
         <h2>You</h2>
 
-        <div class="mood-pill">
+        <div class="mood-pill" [ngClass]="currentMood.toLowerCase()">
           <span class="mood-dot"></span>
-          <span>Not selected</span>
+          <span *ngIf="moodLoaded">{{ currentMood }}</span>
         </div>
 
-        <p class="mood-action">Tap to update mood</p>
+        <p class="mood-action">Tap to update</p>
       </div>
 
       <div class="person-card">
-        <div class="falcon-placeholder">Falcon</div>
+        <img
+          class="falcon-avatar"
+          src="assets/avatars/happy.png"
+          alt="Happy falcon avatar"
+        />
 
         <h2>Partner</h2>
 
-        <div class="mood-pill partner-mood">
+        <div class="mood-pill happy">
           <span class="mood-dot partner-dot"></span>
           <span>Happy</span>
         </div>
       </div>
     </section>
 
-    <section class="home-card">
-      <div class="card-label">Next Plan</div>
-      <h3>Movie Night</h3>
-      <p>Saturday · 8:00 PM</p>
-    </section>
+    <ion-modal #moodModal>
+      <ng-template>
+        <ion-header>
+          <ion-toolbar class="mood-toolbar">
+            <ion-buttons slot="start">
+              <ion-button
+                (click)="moodModal.dismiss()"
+                class="mood-back-button"
+              >
+                <ion-icon name="chevron-back-outline"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+
+            <div class="mood-toolbar-center">
+              <img
+                src="assets/logo/love-in-flight-logo.png"
+                alt="Love in Flight"
+                class="mood-logo"
+              />
+            </div>
+          </ion-toolbar>
+        </ion-header>
+
+        <ion-content>
+          <div class="mood-picker-wrapper">
+            <h2 class="mood-modal-title">How are you feeling?</h2>
+
+            <div class="mood-picker">
+              <button
+                class="mood-option"
+                [ngClass]="mood.toLowerCase()"
+                *ngFor="let mood of moods"
+                (click)="selectMood(mood, moodModal)"
+              >
+                <ion-icon [name]="moodIcon(mood)"></ion-icon>
+                <span>{{ mood }}</span>
+              </button>
+            </div>
+          </div>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
 
     <section class="home-card">
+      <div class="card-label">Next Plan</div>
+
+      <ng-container *ngIf="nextPlanLoaded">
+        <ng-container *ngIf="nextPlanTitle; else noUpcomingPlan">
+          <h3>{{ nextPlanTitle }}</h3>
+          <p class="plan-date">
+            <ion-icon name="calendar-outline"></ion-icon>
+            {{ nextPlanDate }}
+          </p>
+        </ng-container>
+
+        <ng-template #noUpcomingPlan>
+          <h3>No upcoming plans</h3>
+          <p>Plan something to look forward to.</p>
+        </ng-template>
+      </ng-container>
+    </section>
+
+    <section class="home-card" (click)="openPromptOfTheDay()">
       <div class="card-label">Prompt of the Day</div>
-      <h3>Let's Connect</h3>
-      <p>What is one small thing that made you think of me this week?</p>
+
+      <ng-container *ngIf="promptLoaded">
+        <p>{{ promptOfTheDay }}</p>
+      </ng-container>
     </section>
   </div>
 
